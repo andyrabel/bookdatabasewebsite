@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover books from independent authors — browse, search, and explore a growing collection.">
+  <title>Authors' Book Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <h1>Authors' Book Gallery</h1>
+      <p class="tagline">Discover books from independent authors</p>
+      <nav class="site-nav" aria-label="Site navigation">
+        <a href="index.html" class="nav-link" aria-current="page">Browse Books</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="controls">
+      <input type="search" id="search-input" placeholder="Search by title or author…" aria-label="Search books">
+      <select id="category-filter" aria-label="Filter by category">
+        <option value="">All Categories</option>
+      </select>
+      <select id="age-filter" aria-label="Filter by age range">
+        <option value="">All Ages</option>
+      </select>
+    </div>
+
+    <p id="status-bar"></p>
+    <div id="books-grid" class="books-grid" role="list"></div>
+  </main>
+
+  <div id="modal-overlay" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; <span id="footer-year"></span> Authors' Book Gallery</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

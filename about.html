@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About the Authors' Book Gallery — learn how to submit your book and get it featured.">
+  <title>About — Authors' Book Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <h1>Authors' Book Gallery</h1>
+      <p class="tagline">Discover books from independent authors</p>
+      <nav class="site-nav" aria-label="Site navigation">
+        <a href="index.html" class="nav-link">Browse Books</a>
+        <a href="about.html" class="nav-link" aria-current="page">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="about-main">
+
+    <section class="about-section">
+      <h2>About the Gallery</h2>
+      <p>
+        The Authors' Book Gallery is a community showcase for independent authors.
+        Browse our growing collection of books across a wide range of genres and age
+        groups — from picture books to young adult fiction and beyond.
+      </p>
+      <p>
+        Every book in this gallery has been submitted directly by its author, so you
+        can discover new voices and stories that you won't always find on the bestseller
+        lists. Use the search and filters on the <a href="index.html">Browse Books</a>
+        page to find titles by age range or category.
+      </p>
+    </section>
+
+    <section class="about-section submit-section">
+      <h2>Submit Your Book</h2>
+      <p>
+        Are you an author with a book to share? We'd love to feature it here.
+        Fill in our short submission form — it only takes a few minutes — and your
+        book will appear in the gallery once it's been reviewed.
+      </p>
+      <a href="https://forms.gle/jkumCKhf7rU2qq989" class="submit-btn"
+         target="_blank" rel="noopener noreferrer">
+        Submit Your Book &rarr;
+      </a>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; <span id="footer-year"></span> Authors' Book Gallery</p>
+  </footer>
+
+  <script>
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
