@@ -228,6 +228,10 @@ function populateFilters(books) {
   });
 
   const ageSelect = document.getElementById('age-filter');
+  const noneOpt = document.createElement('option');
+  noneOpt.value = '__none__';
+  noneOpt.textContent = 'No Age Range (Adult)';
+  ageSelect.appendChild(noneOpt);
   ages.forEach(a => {
     const opt = document.createElement('option');
     opt.value = a;
@@ -240,16 +244,32 @@ function applyFilters() {
   const query = document.getElementById('search-input').value.toLowerCase().trim();
   const category = document.getElementById('category-filter').value;
   const age = document.getElementById('age-filter').value;
+  const sort = document.getElementById('sort-order').value;
 
-  const filtered = allBooks.filter(book => {
+  let filtered = allBooks.filter(book => {
     const matchesSearch = !query
       || (book['Title'] || '').toLowerCase().includes(query)
       || (book['Author'] || '').toLowerCase().includes(query);
     const matchesCategory = !category
       || (book['Categories'] || '').split(',').map(c => c.trim()).includes(category);
-    const matchesAge = !age || book['Age Range'] === age;
+    const matchesAge = !age
+      ? true
+      : age === '__none__'
+        ? !(book['Age Range'] || '').trim()
+        : book['Age Range'] === age;
     return matchesSearch && matchesCategory && matchesAge;
   });
+
+  if (sort === 'oldest') {
+    // already in CSV order
+  } else if (sort === 'title') {
+    filtered = [...filtered].sort((a, b) => (a['Title'] || '').localeCompare(b['Title'] || ''));
+  } else if (sort === 'author') {
+    filtered = [...filtered].sort((a, b) => (a['Author'] || '').localeCompare(b['Author'] || ''));
+  } else {
+    // newest: reverse CSV order
+    filtered = [...filtered].reverse();
+  }
 
   renderBooks(filtered);
 }
@@ -268,7 +288,7 @@ async function init() {
     }
 
     populateFilters(allBooks);
-    renderBooks(allBooks);
+    renderBooks([...allBooks].reverse());
   } catch (err) {
     console.error('Failed to load books:', err);
     document.getElementById('books-grid').innerHTML =
@@ -278,6 +298,7 @@ async function init() {
   document.getElementById('search-input').addEventListener('input', applyFilters);
   document.getElementById('category-filter').addEventListener('change', applyFilters);
   document.getElementById('age-filter').addEventListener('change', applyFilters);
+  document.getElementById('sort-order').addEventListener('change', applyFilters);
 
   document.getElementById('modal-close').addEventListener('click', closeModal);
   document.getElementById('modal-overlay').addEventListener('click', e => {
