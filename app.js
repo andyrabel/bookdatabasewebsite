@@ -1,6 +1,8 @@
 const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTVk42c6df0NKKJo6mOV9IZ-lpOLHVst5A4wz31zkzl1KG8gq36R_i1p76Pn3FMYDredKihnclM76M-/pub?output=csv';
+const CONTRIBUTORS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT8WkNpvc7I0CAXmT9N6jalYrYKNiEMLmXZ5W_Ua3POxU5M4lcjetfYinLPahvx4P05hs6jKqzFgxIZ/pub?output=csv';
 
 let allBooks = [];
+let allContributors = [];
 
 // RFC 4180-compliant CSV parser (handles quoted fields, embedded commas, newlines, escaped quotes)
 function parseCSV(text) {
@@ -168,6 +170,25 @@ function openModal(book) {
   const meta = (label, value) =>
     value ? `<p class="modal-meta"><strong>${label}:</strong> ${escapeHtml(value)}</p>` : '';
 
+  // Build a map from any contributor name (including alt names) → their Full Name
+  const nameToFullName = new Map();
+  allContributors.forEach(c => {
+    const full = (c['Full Name'] || '').trim();
+    if (!full) return;
+    [c['Full Name'], c['Alternative Name 1'], c['Alternative Name 2']]
+      .filter(Boolean)
+      .forEach(n => nameToFullName.set(n.trim().toLowerCase(), full));
+  });
+
+  const metaOrLink = (label, value) => {
+    if (!value) return '';
+    const contribFull = nameToFullName.get(value.trim().toLowerCase());
+    const content = contribFull
+      ? `<a href="contributors.html?open=${encodeURIComponent(contribFull)}" class="modal-link">${escapeHtml(value)}</a>`
+      : escapeHtml(value);
+    return `<p class="modal-meta"><strong>${label}:</strong> ${content}</p>`;
+  };
+
   const blurb = book['Blurb']
     ? `<div class="modal-blurb">${escapeHtml(book['Blurb']).replace(/\n/g, '<br>')}</div>`
     : '';
@@ -192,8 +213,8 @@ function openModal(book) {
       <div class="modal-info">
         <h2 id="modal-title" class="modal-title">${title}</h2>
         ${book['Subtitle'] ? `<p class="modal-subtitle">${escapeHtml(book['Subtitle'])}</p>` : ''}
-        ${meta('Author', book['Author'])}
-        ${meta('Illustrator', book['Illustrator'])}
+        ${metaOrLink('Author', book['Author'])}
+        ${metaOrLink('Illustrator', book['Illustrator'])}
         ${meta('Age Range', book['Age Range'])}
         ${meta('Categories', book['Categories'])}
         ${meta('LCCN', book['LCCN'])}
@@ -278,9 +299,13 @@ async function init() {
   document.getElementById('books-grid').innerHTML = '<p class="loading">Loading books…</p>';
 
   try {
-    const res = await fetch(CSV_URL);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    allBooks = parseCSV(await res.text());
+    const [booksRes, contribRes] = await Promise.all([
+      fetch(CSV_URL),
+      fetch(CONTRIBUTORS_CSV_URL),
+    ]);
+    if (!booksRes.ok) throw new Error(`HTTP ${booksRes.status}`);
+    allBooks = parseCSV(await booksRes.text());
+    if (contribRes.ok) allContributors = parseCSV(await contribRes.text());
 
     if (allBooks.length === 0) {
       document.getElementById('books-grid').innerHTML = '<p class="no-results">No books found yet. Check back soon.</p>';
@@ -289,6 +314,12 @@ async function init() {
 
     populateFilters(allBooks);
     renderBooks([...allBooks].reverse());
+
+    const openParam = new URLSearchParams(location.search).get('open');
+    if (openParam) {
+      const match = allBooks.find(b => b['Title'] === openParam);
+      if (match) openModal(match);
+    }
   } catch (err) {
     console.error('Failed to load books:', err);
     document.getElementById('books-grid').innerHTML =

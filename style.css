@@ -422,6 +422,17 @@ main {
   margin-bottom: 0.3rem;
 }
 
+.modal-link {
+  color: var(--rose);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.15s;
+}
+
+.modal-link:hover {
+  color: var(--deep-rose);
+}
+
 .modal-blurb {
   margin-top: 1rem;
   padding-top: 1rem;

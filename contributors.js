@@ -207,7 +207,7 @@ function openModal(contributor) {
         <ul class="contributor-book-list">
           ${books.map(({ book, roles }) => `
             <li class="contributor-book-item">
-              <span class="contributor-book-title">${escapeHtml(book['Title'] || 'Untitled')}</span>${book['Subtitle'] ? `<span class="contributor-book-subtitle"> — ${escapeHtml(book['Subtitle'])}</span>` : ''}<span class="contributor-book-roles">${roles.map(r => `<span class="tag tag-role-${r.toLowerCase()}">${escapeHtml(r)}</span>`).join('')}</span>
+              <a href="index.html?open=${encodeURIComponent(book['Title'] || '')}" class="modal-link contributor-book-title">${escapeHtml(book['Title'] || 'Untitled')}</a>${book['Subtitle'] ? `<span class="contributor-book-subtitle"> — ${escapeHtml(book['Subtitle'])}</span>` : ''}<span class="contributor-book-roles">${roles.map(r => `<span class="tag tag-role-${r.toLowerCase()}">${escapeHtml(r)}</span>`).join('')}</span>
             </li>`).join('')}
         </ul>
       </div>`
@@ -287,6 +287,12 @@ async function init() {
     }
 
     renderContributors(allContributors);
+
+    const openParam = new URLSearchParams(location.search).get('open');
+    if (openParam) {
+      const match = allContributors.find(c => c['Full Name'] === openParam);
+      if (match) openModal(match);
+    }
   } catch (err) {
     console.error('Failed to load contributors:', err);
     document.getElementById('contributors-grid').innerHTML =
