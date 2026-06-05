@@ -284,7 +284,9 @@ function applyFilters() {
     return matchesSearch && matchesCategory && matchesAge;
   });
 
-  if (sort === 'oldest') {
+  if (sort === 'random') {
+    filtered = [...filtered].sort((a, b) => a._rand - b._rand);
+  } else if (sort === 'oldest') {
     // already in CSV order
   } else if (sort === 'title') {
     filtered = [...filtered].sort((a, b) => (a['Title'] || '').localeCompare(b['Title'] || ''));
@@ -315,8 +317,9 @@ async function init() {
       return;
     }
 
+    allBooks.forEach(b => { b._rand = Math.random(); });
     populateFilters(allBooks);
-    renderBooks([...allBooks].reverse());
+    renderBooks([...allBooks].sort((a, b) => a._rand - b._rand));
 
     const openParam = new URLSearchParams(location.search).get('open');
     if (openParam) {
