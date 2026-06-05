@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Thy Word Media — meet the authors, illustrators, and other contributors behind our growing collection of independent Christian books.">
+  <meta name="keywords" content="independent authors, illustrators, contributors, self-published, Christian books">
+  <meta property="og:title" content="Contributors — Thy Word Media">
+  <meta property="og:description" content="Meet the authors, illustrators, and contributors behind our independent Christian book collection.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Contributors — Thy Word Media">
+  <meta name="twitter:description" content="Meet the authors, illustrators, and contributors behind our independent Christian book collection.">
+  <link rel="canonical" href="contributors.html">
+  <title>Contributors — Thy Word Media</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Lato:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <h1>Thy Word Media</h1>
+      <p class="tagline">Discover media from independent Christian content creators</p>
+      <nav class="site-nav" aria-label="Site navigation">
+        <a href="index.html" class="nav-link">Browse Books</a>
+        <a href="contributors.html" class="nav-link" aria-current="page">Contributors</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="controls">
+      <input type="search" id="search-input" placeholder="Search by name…" aria-label="Search contributors">
+      <select id="sort-order" aria-label="Sort order">
+        <option value="name">Name A–Z</option>
+        <option value="newest">Most Recent First</option>
+      </select>
+    </div>
+
+    <p id="status-bar"></p>
+    <div id="contributors-grid" class="contributors-grid" role="list"></div>
+  </main>
+
+  <div id="modal-overlay" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; <span id="footer-year"></span> Thy Word Media</p>
+  </footer>
+
+  <script src="contributors.js"></script>
+</body>
+</html>
