@@ -218,6 +218,9 @@ function openModal(book) {
         ${meta('Age Range', book['Age Range'])}
         ${meta('Categories', book['Categories'])}
         ${meta('LCCN', book['LCCN'])}
+        ${meta('Paperback ISBN', book['Paperback ISBN'])}
+        ${meta('Hardback ISBN', book['Hardback ISBN'])}
+        ${meta('eBook ISBN', book['eBook ISBN'])}
         ${blurb}
         ${buyLinks ? `<div class="modal-buy"><h3>Buy this book</h3>${buyLinks}</div>` : ''}
       </div>
