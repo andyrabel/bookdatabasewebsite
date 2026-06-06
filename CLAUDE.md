@@ -27,6 +27,6 @@ This is a fully static, zero-dependency site. There is no framework, no bundler,
 - `driveThumbUrl` — converts Google Drive share URLs to `drive.google.com/thumbnail` URLs (CORS-safe).
 - `applyPlaceholder` — fallback when a cover image fails to load; shows the book's first letter.
 
-**Column names** (from the Google Sheet header row): `Title`, `Subtitle`, `Author`, `Illustrator`, `Age Range`, `Categories`, `Blurb`, `Book Cover Image`, `Paperback ISBN`, `Hardback ISBN`, `eBook ISBN`, `LCCN`. These are used as object keys throughout `app.js` — spelling and capitalisation must match the sheet exactly.
+**Column names** (from the Google Sheet header row): `Title`, `Subtitle`, `Author`, `Illustrator`, `Age Range`, `Categories`, `Blurb`, `Book Cover Image`, `Paperback ISBN (or ASIN)`, `Hardback ISBN (or ASIN)`, `eBook ISBN (or ASIN)`, `LCCN`. These are used as object keys throughout `app.js` — spelling and capitalisation must match the sheet exactly.
 
 **`style.css`** — single stylesheet using CSS custom properties (`--rose`, `--forest`, `--sage`, etc.) defined on `:root`. No preprocessor.

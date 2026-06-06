@@ -202,9 +202,9 @@ function openModal(book) {
     : '';
 
   const buyLinks = [
-    ['Paperback', book['Paperback ISBN']],
-    ['Hardback', book['Hardback ISBN']],
-    ['eBook', book['eBook ISBN']],
+    ['Paperback', book['Paperback ISBN (or ASIN)']],
+    ['Hardback', book['Hardback ISBN (or ASIN)']],
+    ['eBook', book['eBook ISBN (or ASIN)']],
   ]
     .filter(([, isbn]) => isbn)
     .map(([label, isbn]) =>
@@ -226,9 +226,9 @@ function openModal(book) {
         ${meta('Age Range', book['Age Range'])}
         ${meta('Categories', book['Categories'])}
         ${meta('LCCN', book['LCCN'])}
-        ${meta('Paperback ISBN', book['Paperback ISBN'])}
-        ${meta('Hardback ISBN', book['Hardback ISBN'])}
-        ${meta('eBook ISBN', book['eBook ISBN'])}
+        ${meta('Paperback ISBN', book['Paperback ISBN (or ASIN)'])}
+        ${meta('Hardback ISBN', book['Hardback ISBN (or ASIN)'])}
+        ${meta('eBook ISBN', book['eBook ISBN (or ASIN)'])}
         ${blurb}
         ${buyLinks ? `<div class="modal-buy"><h3>Buy this book</h3>${buyLinks}</div>` : ''}
       </div>
