@@ -17,6 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Lato:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7/css/flag-icons.min.css">
 </head>
 <body>
 
@@ -25,10 +26,14 @@
       <h1>Thy Word Media</h1>
       <p class="tagline">Discover media from independent Christian content creators</p>
       <nav class="site-nav" aria-label="Site navigation">
-        <a href="index.html" class="nav-link">Browse Books</a>
+        <a href="index.html" class="nav-link">Books</a>
         <a href="contributors.html" class="nav-link" aria-current="page">Contributors</a>
         <a href="about.html" class="nav-link">About</a>
       </nav>
+      <div id="region-picker" class="region-picker">
+        <button id="region-btn" class="region-btn" aria-haspopup="listbox" aria-expanded="false"></button>
+        <div id="region-dropdown" class="region-dropdown" role="listbox" aria-label="Choose Amazon store" hidden></div>
+      </div>
     </div>
   </header>
 
@@ -56,6 +61,7 @@
     <p>&copy; <span id="footer-year"></span> Thy Word Media</p>
   </footer>
 
+  <script src="region.js"></script>
   <script src="contributors.js"></script>
 </body>
 </html>

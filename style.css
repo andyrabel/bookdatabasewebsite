@@ -58,6 +58,7 @@ header::after {
 .header-inner {
   max-width: 960px;
   margin: 0 auto;
+  position: relative;
 }
 
 header h1 {
@@ -120,6 +121,83 @@ header h1 {
   opacity: 1;
   border-color: rgba(238, 197, 207, 0.6);
   background: rgba(238, 197, 207, 0.1);
+}
+
+.region-picker {
+  position: absolute;
+  top: 0.9rem;
+  right: 0;
+}
+
+.region-btn {
+  background: none;
+  border: none;
+  padding: 0.2rem;
+  cursor: pointer;
+  opacity: 0.55;
+  transition: opacity 0.15s, transform 0.15s;
+  display: flex;
+  align-items: center;
+}
+
+.region-btn:hover,
+.region-btn[aria-expanded="true"] {
+  opacity: 1;
+  transform: scale(1.12);
+}
+
+.region-btn .fi {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+.region-dropdown {
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  right: 0;
+  background: var(--forest);
+  border: 1px solid rgba(238, 197, 207, 0.2);
+  border-radius: 12px;
+  padding: 0.4rem;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.15rem;
+  z-index: 200;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+}
+
+.region-dropdown[hidden] {
+  display: none;
+}
+
+.region-option {
+  background: none;
+  border: none;
+  padding: 0.3rem;
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: 0.65;
+  transition: opacity 0.1s, background 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.region-option .fi {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+
+.region-option:hover {
+  opacity: 1;
+  background: rgba(238, 197, 207, 0.12);
+}
+
+.region-option--active {
+  opacity: 1;
+  background: rgba(238, 197, 207, 0.2);
 }
 
 /* ── Main ── */
