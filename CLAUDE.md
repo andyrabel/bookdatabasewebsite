@@ -30,3 +30,50 @@ This is a fully static, zero-dependency site. There is no framework, no bundler,
 **Column names** (from the Google Sheet header row): `Title`, `Subtitle`, `Author`, `Illustrator`, `Age Range`, `Categories`, `Blurb`, `Book Cover Image`, `Paperback ISBN (or ASIN)`, `Hardback ISBN (or ASIN)`, `eBook ISBN (or ASIN)`, `LCCN`. These are used as object keys throughout `app.js` — spelling and capitalisation must match the sheet exactly.
 
 **`style.css`** — single stylesheet using CSS custom properties (`--rose`, `--forest`, `--sage`, etc.) defined on `:root`. No preprocessor.
+
+# Domain Registration: thywordmedia.org
+
+## Registrar
+- **Provider:** Cloudflare Registrar (https://dash.cloudflare.com)
+- **Domain:** thywordmedia.org
+- **Status:** Active
+- **Renewal:** At-cost pricing (~$9–10/year); auto-renewal recommended
+
+## DNS Records (Cloudflare DNS)
+All records set to **DNS only (grey cloud)** — NOT proxied.
+Proxying must remain OFF so GitHub Pages can verify ownership and issue SSL.
+
+| Type  | Name | Value                  |
+|-------|------|------------------------|
+| A     | @    | 185.199.108.153        |
+| A     | @    | 185.199.109.153        |
+| A     | @    | 185.199.110.153        |
+| A     | @    | 185.199.111.153        |
+| CNAME | www  | andyrabel.github.io    |
+
+## GitHub Pages Configuration
+- **Repository:** https://github.com/andyrabel/bookdatabasewebsite
+- **Custom domain set in:** Repository → Settings → Pages → Custom domain
+- **Value:** `thywordmedia.org`
+- **CNAME file:** Present in repo root (auto-created by GitHub)
+- **Enforce HTTPS:** Enabled (SSL cert provisioned by GitHub via Let's Encrypt)
+
+## How GitHub Routes the Domain
+GitHub's servers receive traffic for thywordmedia.org via the A records above.
+They identify the correct repository by matching the domain against the CNAME
+file present in `andyrabel/bookdatabasewebsite`. Only one repo should ever have
+this domain set as its custom domain.
+
+After setting the custom domain, https://andyrabel.github.io/bookdatabasewebsite/
+automatically redirects to https://thywordmedia.org/
+
+## Email Routing
+- Not yet configured. Cloudflare Email Routing is available if needed.
+- Pattern for other domains (e.g. cmsbayarea.org) uses Cloudflare → forward to Gmail.
+
+## Troubleshooting Notes
+- If GitHub DNS check fails: verify A records are grey cloud (DNS only) in Cloudflare
+- If HTTPS is unavailable: wait for DNS propagation, then re-check Pages settings
+- DNS propagation checker: https://dnschecker.org/#A/thywordmedia.org
+- Cloudflare warning "Proxying required for security features" can be safely ignored
+  for GitHub Pages — GitHub provides its own CDN and SSL.
