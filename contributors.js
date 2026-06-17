@@ -136,17 +136,12 @@ function renderContributorCard(contributor, index) {
     ? `<p class="contributor-alt-names">Also known as: ${altNames.map(n => `<em>${escapeHtml(n)}</em>`).join(', ')}</p>`
     : '';
 
-  const assemblyHtml = contributor['Home Assembly']
-    ? `<p class="contributor-assembly">${escapeHtml(contributor['Home Assembly'])}</p>`
-    : '';
-
   return `
     <article class="contributor-card" role="listitem" data-index="${index}" tabindex="0"
              aria-label="${name}">
       ${avatarHtml}
       <div class="contributor-card-body">
         <h2 class="contributor-name">${name}</h2>
-        ${assemblyHtml}
         ${altNamesHtml}
         <div class="card-tags">${roleTags}</div>
         ${bioExcerpt ? `<p class="contributor-bio-excerpt">${bioExcerpt}</p>` : ''}
@@ -197,8 +192,8 @@ function openModal(contributor) {
     ? `<p class="modal-meta"><strong>Also known as:</strong> ${altNames.map(n => escapeHtml(n)).join(', ')}</p>`
     : '';
 
-  const modalAssemblyHtml = contributor['Home Assembly']
-    ? `<p class="modal-assembly">${escapeHtml(contributor['Home Assembly'])}</p>`
+  const modalAssemblyHtml = contributor['Your Assembly/Church']
+    ? `<p class="modal-assembly">${escapeHtml(contributor['Your Assembly/Church'])}</p>`
     : '';
 
   const bioHtml = contributor['Bio']

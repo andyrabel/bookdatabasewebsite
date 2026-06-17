@@ -495,7 +495,7 @@ main {
 }
 
 .modal-assembly {
-  font-size: 0.9rem;
+  font-size: 0.78rem;
   color: var(--mid);
   font-style: italic;
   margin-bottom: 0.4rem;
@@ -601,6 +601,19 @@ footer {
   line-height: 1.8;
   color: var(--dark);
   margin-bottom: 0.8rem;
+}
+
+.about-section ul {
+  margin: 0 0 0.8rem 0;
+  padding-left: 1.4rem;
+}
+
+.about-section li {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--dark);
+  margin-bottom: 0.25rem;
+  padding-left: 0.3rem;
 }
 
 .about-section a:not(.submit-btn) {
@@ -722,13 +735,6 @@ footer {
   font-weight: 700;
   color: var(--dark);
   line-height: 1.3;
-}
-
-.contributor-assembly {
-  font-size: 0.78rem;
-  color: var(--mid);
-  font-style: italic;
-  margin-bottom: 0.15rem;
 }
 
 .contributor-alt-names {
