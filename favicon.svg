@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- left page -->
+  <rect x="3" y="4" width="12" height="24" rx="2" fill="#b5432a"/>
+  <!-- right page -->
+  <rect x="17" y="4" width="12" height="24" rx="2" fill="#2d5a27"/>
+  <!-- spine highlight -->
+  <rect x="14" y="4" width="4" height="24" rx="1" fill="#e8d5b0"/>
+  <!-- left page lines -->
+  <line x1="6" y1="11" x2="13" y2="11" stroke="#e8d5b0" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="6" y1="15" x2="13" y2="15" stroke="#e8d5b0" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="6" y1="19" x2="13" y2="19" stroke="#e8d5b0" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- right page lines -->
+  <line x1="19" y1="11" x2="26" y2="11" stroke="#c8e6c9" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="19" y1="15" x2="26" y2="15" stroke="#c8e6c9" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="19" y1="19" x2="26" y2="19" stroke="#c8e6c9" stroke-width="1.5" stroke-linecap="round"/>
+</svg>
