@@ -70,6 +70,11 @@ header h1 {
   color: var(--blush);
 }
 
+header h1 a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .tagline {
   font-size: 1rem;
   color: var(--blush);
