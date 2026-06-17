@@ -494,6 +494,13 @@ main {
   margin-bottom: 0.75rem;
 }
 
+.modal-assembly {
+  font-size: 0.9rem;
+  color: var(--mid);
+  font-style: italic;
+  margin-bottom: 0.4rem;
+}
+
 .modal-meta {
   font-size: 0.9rem;
   color: var(--dark);
@@ -715,6 +722,13 @@ footer {
   font-weight: 700;
   color: var(--dark);
   line-height: 1.3;
+}
+
+.contributor-assembly {
+  font-size: 0.78rem;
+  color: var(--mid);
+  font-style: italic;
+  margin-bottom: 0.15rem;
 }
 
 .contributor-alt-names {
