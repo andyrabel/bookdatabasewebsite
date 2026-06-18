@@ -77,3 +77,29 @@ automatically redirects to https://thywordmedia.org/
 - DNS propagation checker: https://dnschecker.org/#A/thywordmedia.org
 - Cloudflare warning "Proxying required for security features" can be safely ignored
   for GitHub Pages — GitHub provides its own CDN and SSL.
+
+# Zapier Automation
+
+## Zap: "Post new Google Sheets rows to Facebook page"
+
+**Status:** Published and active
+
+**Trigger:** New row in Google Sheets
+- **Spreadsheet:** "Books Database Entry Form (Responses)"
+- **Worksheet:** Form Responses 1
+- Fires when a new book submission arrives via the Google Form
+
+**Action:** Create a post on Facebook
+- **Page:** Thy Word Media
+- **Post text:** Book title and author, followed by the blurb
+  - Format: `<Title> by <Author>` + book description
+  - Example: `Dwelling With The Word by Jessica Painter` + description
+- **Image:** Book cover URL from the `Book Cover Image` column (column L)
+
+**Data flow:**
+1. Author submits book via Google Form
+2. Submission appears as a new row in the spreadsheet
+3. Zapier detects the new row
+4. A post is automatically created on the Thy Word Media Facebook page with the cover image and book details
+
+**Managed at:** https://zapier.com (login required)
